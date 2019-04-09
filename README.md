@@ -23,7 +23,7 @@ You can't build a plugin directly, you'll need to create a host project first (a
 This plugin only supports gamepad output in form of vibrations. There is currently no support for built-in force feedback, so you need to use timelines.
 
 Example usage:
-![blueprint](Readme/plugin.png)
+![blueprint](Readme/blueprint.png)
 ![timeline](Readme/timeline.png)
 
 This project has adopted the [Microsoft Open Source Code of
