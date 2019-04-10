@@ -289,15 +289,15 @@ UWindowsGamingInputBPLibrary::UWindowsGamingInputBPLibrary(const FObjectInitiali
 	InitializeGamepad();
 }
 
-bool UWindowsGamingInputBPLibrary::ApplyVibration(float LeftTrigger, float RightTrigger, float LeftMotor, float RightMotor)
+bool UWindowsGamingInputBPLibrary::ApplyVibration(int ControllerIndex, float LeftTrigger, float RightTrigger, float LeftMotor, float RightMotor)
 {
-	if (gamepads[0] != NULL) {
+	if (gamepads[ControllerIndex] != NULL) {
 		GamepadVibration vibration;
 		vibration.LeftTrigger = LeftTrigger;
 		vibration.RightTrigger = RightTrigger;
 		vibration.LeftMotor = LeftMotor;
 		vibration.RightMotor = RightMotor;
-		gamepads[0]->put_Vibration(vibration);
+		gamepads[ControllerIndex]->put_Vibration(vibration);
 		return true;
 	}
 	else {

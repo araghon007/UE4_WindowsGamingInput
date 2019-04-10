@@ -29,7 +29,7 @@ class UWindowsGamingInputBPLibrary : public UBlueprintFunctionLibrary
 	GENERATED_UCLASS_BODY()
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Apply vibration", ToolTip = "Applies vibration to controller", Keywords = "vibration impulse triggers"), Category = "WindowsGamingInput")
-		static bool ApplyVibration(float LeftTrigger, float RightTrigger, float LeftMotor, float RightMotor);
+		static bool ApplyVibration(int ControllerIndex, float LeftTrigger, float RightTrigger, float LeftMotor, float RightMotor);
 
 	UFUNCTION(BlueprintPure, meta = (DisplayName = "Compatibility Check", ToolTip = "Checks Windows version for compatibility", Keywords = "check windows version"), Category = "WindowsGamingInput")
 		static bool Compatibility();
