@@ -282,11 +282,24 @@ BOOL CALLBACK InitHandleFunction(
 
 #pragma endregion
 
+bool CompatibilityCheck() {
+	OSVERSIONINFOEX info;
+	ZeroMemory(&info, sizeof(OSVERSIONINFOEX));
+	info.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
+	GetVersionEx((LPOSVERSIONINFO)& info);
+
+	if (info.dwMajorVersion >= 10) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 UWindowsGamingInputBPLibrary::UWindowsGamingInputBPLibrary(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-
-	InitializeGamepad();
+	if (CompatibilityCheck()) InitializeGamepad();
 }
 
 bool UWindowsGamingInputBPLibrary::ApplyVibration(int ControllerIndex, float LeftTrigger, float RightTrigger, float LeftMotor, float RightMotor)
@@ -306,17 +319,6 @@ bool UWindowsGamingInputBPLibrary::ApplyVibration(int ControllerIndex, float Lef
 }
 
 bool UWindowsGamingInputBPLibrary::Compatibility() {
-	OSVERSIONINFOEX info;
-	ZeroMemory(&info, sizeof(OSVERSIONINFOEX));
-	info.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
-	GetVersionEx((LPOSVERSIONINFO)& info);
-
-	if (info.dwMajorVersion >= 10) {
-		return true;
-	}
-	else {
-		return false;
-	}
+	return CompatibilityCheck();
 }
-
 
